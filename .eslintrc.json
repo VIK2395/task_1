@@ -12,7 +12,7 @@
   "rules": {
     "prettier/prettier": "warn", // run lint to check prettier errors
     "no-unused-vars": "off",
-    "no-console": "warn",
+    "no-console": "off",
     "func-names": "off",
     "no-process-exit": "off"
   }

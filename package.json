@@ -2,21 +2,23 @@
   "name": "task_1",
   "version": "1.0.0",
   "description": "simple UI",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client": "npm run start --prefix client",
+    "server": "npm run dev --prefix server",
+    "run-dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VIK2395/task_1.git"
   },
-  "author": " <viktor.chupak>",
+  "author": "Viktor Chupak <vik.chupak@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/VIK2395/task_1/issues"
   },
   "homepage": "https://github.com/VIK2395/task_1#readme",
   "devDependencies": {
+    "concurrently": "^6.0.0",
     "eslint": "^7.23.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-node": "^4.1.0",

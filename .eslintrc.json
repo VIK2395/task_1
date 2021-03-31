@@ -7,13 +7,15 @@
   "extends": ["airbnb-base", "prettier", "plugin:node/recommended"],
   "plugins": ["prettier"],
   "parserOptions": {
-    "ecmaVersion": 12
+    "sourceType": "module"
   },
   "rules": {
     "prettier/prettier": "warn", // run lint to check prettier errors
     "no-unused-vars": "off",
     "no-console": "off",
     "func-names": "off",
-    "no-process-exit": "off"
+    "no-process-exit": "off",
+    "no-restricted-syntax": "off",
+    "node/no-unsupported-features/es-syntax": "off"
   }
 }

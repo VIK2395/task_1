@@ -1,6 +1,12 @@
-/* #root {
+#root {
   overflow-x: auto;
-} */
+}
+
+html {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+}
 
 table {
   position: relative;
@@ -15,10 +21,6 @@ td {
   border-collapse: collapse;
 }
 
-/* thead {
-  background-color: #ffff99;
-} */
-
 tr th {
   background-color: #ffff99;
 }
@@ -32,8 +34,8 @@ td {
 th {
   cursor: pointer;
   font-size: 20px;
-  position: sticky;
-  top: 0; /* Don't forget this, required for the stickiness */
+  /* position: sticky;
+  top: 0; */
 }
 
 tbody tr:hover {
@@ -48,4 +50,41 @@ th > div {
 .caret {
   display: flex;
   align-items: center;
+}
+
+/* tooltip styles */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.tooltip .tooltiptext {
+  white-space: nowrap;
+  padding: 2px 5px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 2px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 100%;
+  /* Animation */
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0s;
+  transition-delay: 0s;
+}
+
+.tooltip:hover .tooltiptext {
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+  transition-delay: 0.3s;
 }

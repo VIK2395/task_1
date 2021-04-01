@@ -14,44 +14,44 @@ const data = [
   {
     id: 3,
     name: 'Alyce',
-    job: 'Interacti...',
-    country: 'French Po...',
+    job: 'Interaction',
+    country: 'French Polynesia',
   },
   {
     id: 4,
     name: 'Bryon',
     job: 'Tactics',
-    country: 'Saint Hel...',
+    country: 'Saint Helena',
   },
   {
     id: 5,
     name: 'Colby',
-    job: 'Integrati...',
-    country: 'Central A...',
+    job: 'Integration',
+    country: 'Central African Republic',
   },
   {
     id: 6,
     name: 'Don',
-    job: 'Communica...',
+    job: 'Communication',
     country: 'Senegal',
   },
   {
     id: 7,
     name: 'Eladio',
-    job: 'Functiona...',
+    job: 'Functionality',
     country: 'Grenada',
   },
   {
     id: 8,
     name: 'Elisabeth',
     job: 'Security',
-    country: 'New Caled...',
+    country: 'New Caledonia',
   },
   {
     id: 9,
     name: 'Felicia',
     job: 'Security',
-    country: 'Burkina F...',
+    country: 'Burkina Faso',
   },
   {
     id: 10,
@@ -69,7 +69,7 @@ const data = [
     id: 12,
     name: 'Lloyd',
     job: 'Marketing',
-    country: 'Martiniqu...',
+    country: 'Martinique',
   },
   {
     id: 13,
@@ -81,13 +81,13 @@ const data = [
     id: 14,
     name: 'Shawn',
     job: 'Research',
-    country: 'British I...',
+    country: 'British Isles',
   },
   {
     id: 15,
     name: 'Yasmine',
     job: 'Branding',
-    country: 'Cocos (Ke...',
+    country: 'Cocos (Keeling) Islands',
   },
 ];
 

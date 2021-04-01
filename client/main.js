@@ -5,34 +5,50 @@ class Grid {
     this.columns = columnsConfig;
     this.data = tableData;
     this.caption = tableCaption;
+    //
+    this.sort = {
+      field: null,
+      order: null,
+    };
+    this.compare = this.compare.bind(this);
+  }
+
+  compare(field) {
+    if (this.sort.field === field) {
+      if (this.sort.order === 'asc') {
+        this.sort.order = 'desc';
+      } else {
+        this.sort.order = 'asc';
+      }
+    } else {
+      this.sort.field = field;
+      this.sort.order = 'asc';
+    }
+
+    return (a, b) => {
+      if (!a.hasOwnProperty(field) || !b.hasOwnProperty(field)) {
+        return 0;
+      }
+
+      const A = typeof a[field] === 'string' ? a[field].toLowerCase() : a[field];
+      const B = typeof b[field] === 'string' ? b[field].toLowerCase() : b[field];
+
+      if (this.sort.order === 'asc') {
+        if (A < B) return -1;
+        if (A > B) return 1;
+      }
+
+      if (this.sort.order === 'desc') {
+        if (A > B) return -1;
+        if (A < B) return 1;
+      }
+
+      return 0;
+    };
   }
 
   sortData(byField) {
-    function compare(field, order = 'asc') {
-      return (a, b) => {
-        if (!a.hasOwnProperty(field) || !b.hasOwnProperty(field)) {
-          return 0;
-        }
-
-        const A = typeof a[field] === 'string' ? a[field].toLowerCase() : a[field];
-        const B = typeof b[field] === 'string' ? b[field].toLowerCase() : b[field];
-
-        if (order === 'asc') {
-          if (A < B) return -1;
-          if (A > B) return 1;
-        }
-
-        if (order === 'desc') {
-          if (A > B) return -1;
-          if (A < B) return 1;
-        }
-
-        return 0;
-      };
-    }
-
-    this.data.sort(compare(byField));
-
+    this.data.sort(this.compare(byField));
     return this;
   }
 
@@ -91,6 +107,9 @@ async function fetchData() {
 }
 
 const columns = [
+  // {
+  //   field: 'id',
+  // },
   {
     field: 'name',
     title: 'Person',
@@ -107,7 +126,9 @@ const columns = [
 
 async function createTable() {
   const data = await fetchData();
-  new Grid(columns, data, 'Table Caption').render('root');
+  // console.log('data: ', data);
+  const table = new Grid(columns, data, 'Table Caption');
+  table.render('root');
 }
 
 createTableBtn.addEventListener('click', createTable);

@@ -5,7 +5,6 @@ class Grid {
     this.columns = columnsConfig;
     this.data = tableData;
     this.caption = tableCaption;
-    //
     this.sort = {
       field: null,
       order: null,
@@ -57,8 +56,52 @@ class Grid {
 
     let headers = '';
 
+    const defaultCaret = `<svg xmlns="http://www.w3.org/2000/svg"
+      width="12" height="12"
+      fill="currentColor"
+      class="bi bi-chevron-expand"
+      viewBox="0 0 16 16"
+    >
+      <path fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+    </svg>`;
+
+    const caretUp = `<svg xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+      fill="currentColor"
+      class="bi bi-caret-up-fill"
+      viewBox="0 0 16 16"
+    >
+      <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+    </svg>`;
+
+    const caretDown = `<svg xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+      fill="currentColor"
+      class="bi bi-caret-down-fill"
+      viewBox="0 0 16 16"
+    >
+      <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+    </svg>`;
+
     for (const column of this.columns) {
-      headers += `<th id=${column.field}>${column.title ? column.title : column.field}</th>`;
+      let caret = defaultCaret;
+
+      if (this.sort.field === column.field) {
+        if (this.sort.order === 'asc') {
+          caret = caretUp;
+        } else {
+          caret = caretDown;
+        }
+      }
+
+      headers += `<th id=${column.field}>
+        <div>
+          <span>${column.title ? column.title : column.field}</span>
+          <span>${caret}</span>
+        </div>
+      </th>`;
     }
 
     const tableHeaderRow = `<tr>${headers}</tr>`;
@@ -91,9 +134,10 @@ class Grid {
     const bindedSortData = this.sortData.bind(this);
 
     root.addEventListener('click', function sortListener(ev) {
-      if (ev.target.tagName !== 'TH') return;
-      root.removeEventListener('click', sortListener);
-      bindedSortData(ev.target.id).render(rootId);
+      if (ev.target.closest('th')) {
+        root.removeEventListener('click', sortListener);
+        bindedSortData(ev.target.closest('th').id).render(rootId);
+      }
     });
   }
 }
@@ -126,7 +170,6 @@ const columns = [
 
 async function createTable() {
   const data = await fetchData();
-  // console.log('data: ', data);
   const table = new Grid(columns, data, 'Table Caption');
   table.render('root');
 }

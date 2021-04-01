@@ -27,3 +27,14 @@ th {
 tbody tr:hover {
   background-color: beige;
 }
+
+th div {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* th svg {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+} */

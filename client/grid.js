@@ -126,7 +126,7 @@ export default class Grid {
 
     const caption = this.caption ? `<caption>${this.caption}</caption>` : '';
 
-    const table = `<table>
+    const table = `<div class="table-wrapper"><table>
             ${caption}
             <thead>
               ${tableHeaderRow}
@@ -134,7 +134,7 @@ export default class Grid {
             <tbody>
               ${tableBodyRows}
             </tbody>
-          </table>`;
+          </table></div>`;
 
     root.innerHTML = table;
 

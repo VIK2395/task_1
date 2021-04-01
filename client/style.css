@@ -1,5 +1,9 @@
-#root {
-  overflow-x: auto;
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -8,10 +12,51 @@ html {
     'Noto Color Emoji';
 }
 
-table {
-  position: relative;
-  width: 70%;
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.btn-container button {
+  font-size: 14px;
+  padding: 5px;
+}
+
+#root {
+  width: 100%;
+  text-align: center;
+}
+
+.table-wrapper {
+  display: inline-block;
   margin: 0 auto;
+  padding: 5px;
+  overflow: hidden;
+}
+
+table {
+  table-layout: auto;
+  width: 95%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 425px) {
+  table {
+    table-layout: fixed;
+  }
 }
 
 table,
@@ -62,6 +107,7 @@ th > div {
 }
 
 .tooltip .tooltiptext {
+  visibility: hidden;
   white-space: nowrap;
   padding: 2px 5px;
   background-color: black;
@@ -72,7 +118,6 @@ th > div {
 
   /* Position the tooltip */
   position: absolute;
-  z-index: 1;
   top: 100%;
   left: 100%;
   /* Animation */
@@ -83,6 +128,7 @@ th > div {
 }
 
 .tooltip:hover .tooltiptext {
+  visibility: visible;
   opacity: 1;
   transition-property: opacity;
   transition-duration: 0.5s;

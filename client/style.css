@@ -1,4 +1,9 @@
+/* #root {
+  overflow-x: auto;
+} */
+
 table {
+  position: relative;
   width: 70%;
   margin: 0 auto;
 }
@@ -10,7 +15,11 @@ td {
   border-collapse: collapse;
 }
 
-thead {
+/* thead {
+  background-color: #ffff99;
+} */
+
+tr th {
   background-color: #ffff99;
 }
 
@@ -23,6 +32,8 @@ td {
 th {
   cursor: pointer;
   font-size: 20px;
+  position: sticky;
+  top: 0; /* Don't forget this, required for the stickiness */
 }
 
 tbody tr:hover {

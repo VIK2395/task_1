@@ -1,3 +1,5 @@
+import Grid from './grid.js';
+
 const createTableBtn = document.getElementById('createTableBtn');
 
 async function fetchData() {
@@ -26,7 +28,6 @@ const columns = [
 
 async function createTable() {
   const data = await fetchData();
-  // eslint-disable-next-line no-undef
   const table = new Grid(columns, data, 'Table Caption');
   table.render('root');
 }

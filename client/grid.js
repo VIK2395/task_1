@@ -1,4 +1,4 @@
-class Grid {
+export default class Grid {
   constructor(columnsConfig, tableData, tableCaption = undefined) {
     this.columns = columnsConfig;
     this.data = tableData;

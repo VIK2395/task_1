@@ -1,5 +1,5 @@
 const http = require('http');
-const grid = require('./assets/grid');
+const data = require('./assets/data');
 
 const server = http.createServer((req, res) => {
   // While in development, to allow client to make requests to server // CORS
@@ -10,7 +10,7 @@ const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', true);
 
   res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(grid));
+  res.end(JSON.stringify(data));
 });
 
 server.listen(5000);

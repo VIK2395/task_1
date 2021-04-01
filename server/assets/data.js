@@ -1,4 +1,4 @@
-const grid = [
+const data = [
   {
     id: 1,
     name: 'Abner',
@@ -91,4 +91,4 @@ const grid = [
   },
 ];
 
-module.exports = grid;
+module.exports = data;

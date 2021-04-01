@@ -16,25 +16,25 @@ thead {
 
 th,
 td {
-  padding: 5px;
+  padding: 8px;
   text-align: left;
 }
 
 th {
   cursor: pointer;
+  font-size: 20px;
 }
 
 tbody tr:hover {
   background-color: beige;
 }
 
-th div {
+th > div {
   display: flex;
   justify-content: space-between;
 }
 
-/* th svg {
-  position: absolute;
-  right: 10px;
-  top: 8px;
-} */
+.caret {
+  display: flex;
+  align-items: center;
+}

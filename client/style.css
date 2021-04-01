@@ -11,11 +11,19 @@ td {
 }
 
 thead {
-  background-color: beige;
+  background-color: #ffff99;
 }
 
 th,
 td {
   padding: 5px;
   text-align: left;
+}
+
+th {
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background-color: beige;
 }

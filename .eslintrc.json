@@ -16,6 +16,7 @@
     "func-names": "off",
     "no-process-exit": "off",
     "no-restricted-syntax": "off",
-    "node/no-unsupported-features/es-syntax": "off"
+    "node/no-unsupported-features/es-syntax": "off",
+    "no-prototype-builtins": "off"
   }
 }

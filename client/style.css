@@ -134,3 +134,7 @@ th > div {
   transition-duration: 0.5s;
   transition-delay: 0.3s;
 }
+
+popup-info {
+  margin: 0 auto;
+}

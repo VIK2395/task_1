@@ -1,4 +1,5 @@
 import Grid from './grid.js';
+import PopUpInfo from './autonomous-custom-element.js';
 
 const createTableBtn = document.getElementById('createTableBtn');
 
@@ -9,9 +10,9 @@ async function fetchData() {
 }
 
 const columns = [
-  // {
-  //   field: 'id',
-  // },
+  {
+    field: 'id',
+  },
   {
     field: 'name',
     title: 'Person',

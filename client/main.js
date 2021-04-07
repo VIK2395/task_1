@@ -1,36 +1,34 @@
-import Grid from './grid.js';
-import PopUpInfo from './autonomous-custom-element.js';
-
-const createTableBtn = document.getElementById('createTableBtn');
+const fetchDataBtn = document.getElementById('fetchDataBtn');
 
 async function fetchData() {
-  const response = await fetch('http://localhost:5000/');
+  // (algorithm , [root, firstfield, secondfield])
+  // const url = `http://localhost:5000/sort?algorithm=${algorithm}&root=Statistics&firstfield=Flights&secondfield=Total`;
+
+  // sort
+  // const response = await fetch('http://localhost:5000/sort?algorithm=selection');
+  // search
+  const response = await fetch('http://localhost:5000/search', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify({
+      target: 'MCO',
+    }),
+  });
+
   const data = await response.json();
   return data;
 }
 
-const columns = [
-  {
-    field: 'id',
-  },
-  {
-    field: 'name',
-    title: 'Person',
-  },
-  {
-    field: 'job',
-    title: 'Job',
-  },
-  {
-    field: 'country',
-    title: 'Country',
-  },
-];
-
-async function createTable() {
+async function logData() {
   const data = await fetchData();
-  const table = new Grid(columns, data, 'Table Caption');
-  table.render('root');
+  const root = document.querySelector('.root');
+  root.innerHTML = `<pre style="word-wrap: break-word; white-space: pre-wrap; margin: 0px 20px">${JSON.stringify(
+    data,
+    null,
+    2
+  )}</pre>`;
 }
 
-createTableBtn.addEventListener('click', createTable);
+fetchDataBtn.addEventListener('click', logData);

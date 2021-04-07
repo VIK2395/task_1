@@ -18,6 +18,10 @@
     "no-restricted-syntax": "off",
     "node/no-unsupported-features/es-syntax": "off",
     "no-prototype-builtins": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+    "max-classes-per-file": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "commentPattern": "^skip\\sdefault"
   }
 }

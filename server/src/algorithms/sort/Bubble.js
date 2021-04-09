@@ -1,13 +1,16 @@
 const BaseSortAlgorithm = require('./BaseSortAlgorithm');
 
 class BubbleSort extends BaseSortAlgorithm {
-  sort() {
-    for (let i = 0; i < this.algorithmData.length; i++) {
-      for (let j = 0; j < this.algorithmData.length; j++) {
+  sort(field, order) {
+    const n = this.algorithmData.length;
+
+    for (let i = 0; i < n - 1; i++) {
+      for (let j = 0; j < n - i - 1; j++) {
         if (
-          this.algorithmData[j + 1] &&
-          this.algorithmData[j].Statistics.Flights.Total.toString().toLowerCase() >
-            this.algorithmData[j + 1].Statistics.Flights.Total.toString().toLowerCase()
+          (order === 'asc' &&
+            this.compare(this.algorithmData[min][field], this.algorithmData[j][field])) ||
+          (order === 'desc' &&
+            !this.compare(this.algorithmData[min][field], this.algorithmData[j][field]))
         ) {
           const temp = this.algorithmData[j];
           this.algorithmData[j] = this.algorithmData[j + 1];

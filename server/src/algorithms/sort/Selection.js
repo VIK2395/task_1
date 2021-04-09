@@ -1,16 +1,20 @@
 const BaseSortAlgorithm = require('./BaseSortAlgorithm');
 
 class SelectionSort extends BaseSortAlgorithm {
-  sort() {
+  sort(field, order) {
     let min;
     let temp;
 
-    for (let i = 0; i < this.algorithmData.length; i++) {
+    const n = this.algorithmData.length;
+
+    for (let i = 0; i < n - 1; i++) {
       min = i;
-      for (let j = i + 1; j < this.algorithmData.length; j++) {
+      for (let j = i + 1; j < n; j++) {
         if (
-          this.algorithmData[min].Statistics.Flights.Total.toString().toLowerCase() >
-          this.algorithmData[j].Statistics.Flights.Total.toString().toLowerCase()
+          (order === 'asc' &&
+            this.compare(this.algorithmData[min][field], this.algorithmData[j][field])) ||
+          (order === 'desc' &&
+            !this.compare(this.algorithmData[min][field], this.algorithmData[j][field]))
         ) {
           min = j;
         }

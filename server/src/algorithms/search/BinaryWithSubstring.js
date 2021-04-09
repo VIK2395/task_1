@@ -1,6 +1,8 @@
 const BaseSearchAlgorithm = require('./BaseSearchAlgorithm');
+const regExpFromString = require('../../utils/regExpFromString');
 
-class BinarySearch extends BaseSearchAlgorithm {
+// find matches in first string only, this is how binary works correctly
+class BinarySearchWithSubstring extends BaseSearchAlgorithm {
   search(field, target) {
     let low = 0;
     let high = this.algorithmData.length - 1;
@@ -10,7 +12,7 @@ class BinarySearch extends BaseSearchAlgorithm {
       let mid = low + Math.floor((high - low) / 2);
       let value = this.algorithmData[mid][field].toString().toLowerCase().trim();
 
-      if (value === x) {
+      if (value.search(regExpFromString(x)) !== -1) {
         return this.algorithmData[mid];
       }
 
@@ -24,4 +26,4 @@ class BinarySearch extends BaseSearchAlgorithm {
   }
 }
 
-module.exports = BinarySearch;
+module.exports = BinarySearchWithSubstring;

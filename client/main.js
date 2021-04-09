@@ -1,22 +1,9 @@
-const fetchDataBtn = document.getElementById('fetchDataBtn');
+const makeRequestBtn = document.getElementById('makeRequestBtn');
 
 async function fetchData() {
-  // (algorithm , [root, firstfield, secondfield])
-  // const url = `http://localhost:5000/sort?algorithm=${algorithm}&root=Statistics&firstfield=Flights&secondfield=Total`;
+  // const { algorithmtype, algorithmname, field, order, target } = req.query;
 
-  // sort
-  // const response = await fetch('http://localhost:5000/sort?algorithm=selection');
-  // search
-  const response = await fetch('http://localhost:5000/search', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-    },
-    body: JSON.stringify({
-      target: 'MCO',
-    }),
-  });
-
+  const response = await fetch(`http://localhost:5000/algorithm?algorithmtype=${}&algorithmname=${}&field=${}&order=${}&target=${}`);
   const data = await response.json();
   return data;
 }
@@ -31,4 +18,4 @@ async function logData() {
   )}</pre>`;
 }
 
-fetchDataBtn.addEventListener('click', logData);
+makeRequestBtn.addEventListener('click', logData);

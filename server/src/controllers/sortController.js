@@ -1,19 +1,16 @@
 const sortAlgorithmFactory = require('../algorithms/SortAlgorithmFactory');
 
 const sort = (req, res) => {
-  const { algorithm } = req.query;
+  const { algorithmtype, algorithmname, field, order, target } = req.query;
 
-  console.log('from sort');
-  console.log('algorithm: ', algorithm);
-
-  if (!algorithm) {
+  if (!algorithmname) {
     return res.status(400).json({
-      message: 'Incorrect algorithm name.',
+      message: "No algorithm's name specified.",
     });
   }
 
-  const sortAlgorithm = sortAlgorithmFactory.create(algorithm);
-  return res.json(sortAlgorithm.sort());
+  const sortAlgorithm = sortAlgorithmFactory.create(algorithmname);
+  return res.json(sortAlgorithm.sort('Airport', 'asc'));
 };
 
 module.exports = sort;

@@ -18,23 +18,23 @@ body {
   width: 100%;
 }
 
-.wrapper {
+.main-wrapper {
   height: 100%;
   width: 100%;
+  padding-top: 15px;
 }
 
-.btn-container,
-.input-container {
+.wrapper {
   display: flex;
   justify-content: center;
   padding: 20px;
 }
 
-.btn-container button {
+.wrapper button {
   font-size: 14px;
   padding: 5px;
 }
 
-.input-container input {
+.wrapper input {
   height: 26px;
 }

@@ -3,7 +3,15 @@ const makeRequestBtn = document.getElementById('makeRequestBtn');
 async function fetchData() {
   // const { algorithmtype, algorithmname, field, order, target } = req.query;
 
-  const response = await fetch(`http://localhost:5000/algorithm?algorithmtype=${}&algorithmname=${}&field=${}&order=${}&target=${}`);
+  const algorithmType = 'search'; // sort | search
+  const algorithmName = 'linearwithsubstring'; // bubble | selection | quick || linear | linearwithsubstring | binary | binarywithsubstring
+  const field = 'Airport'; // Airport | Flights | Year | Month
+  const order = 'asc'; // asc | desc
+  const target = 'Washington'; // any string
+
+  const response = await fetch(
+    `http://localhost:5000/algorithm?algorithmtype=${algorithmType}&algorithmname=${algorithmName}&field=${field}&order=${order}&target=${target}`
+  );
   const data = await response.json();
   return data;
 }
@@ -19,3 +27,10 @@ async function logData() {
 }
 
 makeRequestBtn.addEventListener('click', logData);
+
+// bubble: O(n^2)
+// selection: O(n^2)
+// quick: O(log n)
+
+// linear: O(n)
+// binary: O(log n)

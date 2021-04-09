@@ -8,9 +8,9 @@ class BubbleSort extends BaseSortAlgorithm {
       for (let j = 0; j < n - i - 1; j++) {
         if (
           (order === 'asc' &&
-            this.compare(this.algorithmData[min][field], this.algorithmData[j][field])) ||
+            this.compare(this.algorithmData[j][field], this.algorithmData[j + 1][field])) ||
           (order === 'desc' &&
-            !this.compare(this.algorithmData[min][field], this.algorithmData[j][field]))
+            !this.compare(this.algorithmData[j][field], this.algorithmData[j + 1][field]))
         ) {
           const temp = this.algorithmData[j];
           this.algorithmData[j] = this.algorithmData[j + 1];

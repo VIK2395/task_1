@@ -24,3 +24,5 @@ class BubbleSort extends BaseSortAlgorithm {
 }
 
 module.exports = BubbleSort;
+
+// this.algorithmData[j].compare(this.algorithmData[j + 1], field)

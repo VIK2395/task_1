@@ -30,7 +30,16 @@ makeRequestBtn.addEventListener('click', logData);
 
 // bubble: O(n^2)
 // selection: O(n^2)
-// quick: O(log n)
+// quick: O(n*log n)
 
 // linear: O(n)
 // binary: O(log n)
+// binary with quick sorting: O(n*log n) + O(log n) = O((n+1)*log n) = O(n*log n)
+
+// n = 9
+// linear: O(n) = 9
+// binary with quick sorting: O(n*log n) = 9*3 = 27
+
+// n = 90 000
+// linear: O(n) = 90 000
+// binary with quick sorting: O(n*log n) = 90 000*300 = 27 000 000

@@ -1,6 +1,6 @@
-const reviews = [
+const reviewsData = [
   {
-    reviewId: 'review_01',
+    _id: 'review_01',
     author: 'user_01',
     comicsDescribed: 'comics_01',
     text: 'Awesome!',
@@ -8,4 +8,4 @@ const reviews = [
   },
 ];
 
-module.exports = reviews;
+module.exports = reviewsData;

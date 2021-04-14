@@ -1,6 +1,6 @@
-const users = [
+const usersData = [
   {
-    userId: 'user_01',
+    _id: 'user_01',
     name: 'Jonny',
     lastName: 'Depp',
     image:
@@ -8,4 +8,4 @@ const users = [
   },
 ];
 
-module.exports = users;
+module.exports = usersData;

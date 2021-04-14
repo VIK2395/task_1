@@ -1,24 +1,23 @@
 const { v4: uuidv4 } = require('uuid');
 
 class Comics {
-  constructor(
+  constructor({
+    _id = uuidv4(),
     title = 'Not provided',
     logo = 'Not provided',
     publisher = 'Not provided',
     author = 'Not provided',
     characters = [],
-    rating = null
-  ) {
-    this.comicsId = uuidv4();
+    rating = null,
+  }) {
+    this._id = _id;
     this.title = title;
     this.logo = logo;
     this.publisher = publisher;
     this.author = author;
     this.characters = characters;
     this.rating = rating;
-    // this.marks = []
   }
-  // updateRating()
 }
 
 module.exports = Comics;

@@ -1,6 +1,6 @@
 const reviewsData = [
   {
-    _id: 'review_01',
+    reviewId: 'review_01',
     author: 'user_01',
     comicsDescribed: 'comics_01',
     text: 'Awesome!',

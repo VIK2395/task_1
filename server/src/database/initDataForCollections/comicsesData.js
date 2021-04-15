@@ -1,6 +1,6 @@
 const comicsesData = [
   {
-    _id: 'comics_01',
+    comicsId: 'comics_01',
     title: 'Harley Quinn #57 Main Cover',
     logo: 'https://images-na.ssl-images-amazon.com/images/I/81aQz+nNa8L.jpg',
     publisher: 'publisher_01',

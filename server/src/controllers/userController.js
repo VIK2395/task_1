@@ -1,12 +1,12 @@
 const User = require('../models/User');
-const users = require('../db/Database').getData.users;
+const users = require('../database/Database').getData.users;
 
 const user_get_all = (req, res) => {
   res.json(users);
 };
 
 const user_get_one = (req, res) => {
-  const index = users.findIndex((user) => user._id === req.params.id);
+  const index = users.findIndex((item) => item.userId === req.params.id);
   if (index === -1) {
     return res.status(404).json({ message: 'User with such an id not found' });
   }
@@ -21,7 +21,7 @@ const user_post = (req, res) => {
 
 // PUT - fully overwrite a model, PATCH - just modifies a field of a model
 const user_put = (req, res) => {
-  const index = users.findIndex((user) => user._id === req.params.id);
+  const index = users.findIndex((item) => item.userId === req.params.id);
   if (index === -1) {
     return res.status(404).json({ message: 'User with such an id not found' });
   }
@@ -30,7 +30,7 @@ const user_put = (req, res) => {
 };
 
 const user_delete = (req, res) => {
-  const index = users.findIndex((user) => user._id === req.params.id);
+  const index = users.findIndex((item) => item.userId === req.params.id);
   if (index === -1) {
     return res.status(404).json({ message: 'User with such an id not found' });
   }

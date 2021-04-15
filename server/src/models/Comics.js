@@ -1,8 +1,6 @@
-const { v4: uuidv4 } = require('uuid');
-
 class Comics {
   constructor({
-    _id = uuidv4(),
+    comicsId = 'Not provided',
     title = 'Not provided',
     logo = 'Not provided',
     publisher = 'Not provided',
@@ -10,7 +8,7 @@ class Comics {
     characters = [],
     rating = null,
   }) {
-    this._id = _id;
+    this.comicsId = comicsId;
     this.title = title;
     this.logo = logo;
     this.publisher = publisher;

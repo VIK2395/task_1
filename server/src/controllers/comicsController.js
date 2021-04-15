@@ -1,12 +1,14 @@
+const { v4: uuidv4 } = require('uuid');
 const Comics = require('../models/Comics');
-const comicses = require('../db/Database').getData.comicses;
+const comicses = require('../database/Database').getData.comicses;
 
 const comics_get_all = (req, res) => {
+  // throw new Error('Global error handler test');
   res.json(comicses);
 };
 
 const comics_get_one = (req, res) => {
-  const index = comicses.findIndex((comics) => comics._id === req.params.id);
+  const index = comicses.findIndex((item) => item.comicsId === req.params.id);
   if (index === -1) {
     return res.status(404).json({ message: 'Comics with such an id not found' });
   }
@@ -14,23 +16,38 @@ const comics_get_one = (req, res) => {
 };
 
 const comics_post = (req, res) => {
-  const comics = new Comics(req.body);
+  const comics = new Comics({
+    comicsId: uuidv4(),
+    title: req.body.title,
+    logo: `http://localhost:5000/${req.file.path}`,
+    publisher: req.body.publisher,
+    author: req.body.author,
+    characters: req.body.characters,
+    rating: req.body.rating,
+  });
   comicses.push(comics);
   res.status(201).json(comics);
 };
 
-// PUT - fully overwrite a model, PATCH - just modifies a field of a model
 const comics_put = (req, res) => {
-  const index = comicses.findIndex((comics) => comics._id === req.params.id);
+  const index = comicses.findIndex((item) => item.comicsId === req.params.id);
   if (index === -1) {
     return res.status(404).json({ message: 'Comics with such an id not found' });
   }
-  comicses[index] = new Comics(req.body);
+  comicses[index] = new Comics({
+    comicsId: req.params.id,
+    title: req.body.title,
+    logo: `http://localhost:5000/${req.file.path}`,
+    publisher: req.body.publisher,
+    author: req.body.author,
+    characters: req.body.characters,
+    rating: req.body.rating,
+  });
   res.json(comicses[index]);
 };
 
 const comics_delete = (req, res) => {
-  const index = comicses.findIndex((comics) => comics._id === req.params.id);
+  const index = comicses.findIndex((item) => item.comicsId === req.params.id);
   if (index === -1) {
     return res.status(404).json({ message: 'Comics with such an id not found' });
   }

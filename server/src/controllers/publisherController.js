@@ -1,5 +1,5 @@
 const Publisher = require('../models/Publisher');
-const publishers = require('../db/Database').getData.publishers;
+const publishers = require('../database/Database').getData.publishers;
 
 const publisher_get_all = (req, res) => {
   res.json(publishers);

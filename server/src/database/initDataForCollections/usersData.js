@@ -1,6 +1,6 @@
 const usersData = [
   {
-    _id: 'user_01',
+    userId: 'user_01',
     name: 'Jonny',
     lastName: 'Depp',
     image:

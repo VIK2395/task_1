@@ -1,14 +1,12 @@
-const { v4: uuidv4 } = require('uuid');
-
 class Publisher {
   constructor({
-    _id = uuidv4(),
+    publisherId = 'Not provided',
     name = 'Not provided',
     dateFounded = 'Not provided',
     parantCompany = 'Not provided',
     countryOfOrigin = 'Not provided',
   }) {
-    this._id = _id;
+    this.publisherId = publisherId;
     this.name = name;
     this.dateFounded = dateFounded;
     this.parantCompany = parantCompany;

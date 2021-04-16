@@ -6,7 +6,7 @@ const publisher_get_all = (req, res) => {
 };
 
 const publisher_get_one = (req, res) => {
-  const index = publishers.findIndex((publisher) => publisher._id === req.params.id);
+  const index = publishers.findIndex((item) => item.publisherId === req.params.id);
   if (index === -1) {
     return res.status(404).json({ message: 'Publisher with such an id not found' });
   }
@@ -21,7 +21,7 @@ const publisher_post = (req, res) => {
 
 // PUT - fully overwrite a model, PATCH - just modifies a field of a model
 const publisher_put = (req, res) => {
-  const index = publishers.findIndex((publisher) => publisher._id === req.params.id);
+  const index = publishers.findIndex((item) => item.publisherId === req.params.id);
   if (index === -1) {
     return res.status(404).json({ message: 'Publisher with such an id not found' });
   }
@@ -30,7 +30,7 @@ const publisher_put = (req, res) => {
 };
 
 const publisher_delete = (req, res) => {
-  const index = publishers.findIndex((publisher) => publisher._id === req.params.id);
+  const index = publishers.findIndex((item) => item.publisherId === req.params.id);
   if (index === -1) {
     return res.status(404).json({ message: 'Publisher with such an id not found' });
   }

@@ -14,9 +14,9 @@ const review_get_one = (req, res) => {
 };
 
 const review_post = (req, res) => {
-  const item = new Review(req.body);
-  reviews.push(item);
-  res.status(201).json(item);
+  const review = new Review(req.body);
+  reviews.push(review);
+  res.status(201).json(review);
 };
 
 // PUT - fully overwrite a model, PATCH - just modifies a field of a model

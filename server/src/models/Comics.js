@@ -11,9 +11,9 @@ class Comics {
     this.comicsId = comicsId;
     this.title = title;
     this.logo = logo;
-    this.publisher = publisher;
+    this.publisher = publisher; // publisherId
     this.author = author;
-    this.characters = characters;
+    this.characters = characters; // [characterId...]
     this.rating = rating;
   }
 }

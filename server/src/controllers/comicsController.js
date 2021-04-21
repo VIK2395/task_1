@@ -1,8 +1,13 @@
 const { v4: uuidv4 } = require('uuid');
 const Comics = require('../models/Comics');
+const database = require('../database/Database').getData;
 const comicses = require('../database/Database').getData.comicses;
 
 const comics_get_all = (req, res) => {
+  if (req.query.enrich === 'true') {
+    const enrichedComicses = comicses.map((item) => item.enrich(database));
+    return res.json(enrichedComicses);
+  }
   // throw new Error('Global error handler test');
   res.json(comicses);
 };

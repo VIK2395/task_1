@@ -13,8 +13,17 @@ class Comics {
     this.logo = logo;
     this.publisher = publisher; // publisherId
     this.author = author;
-    this.characters = characters; // [characterId...]
+    this.characters = characters; // [characterId, ..]
     this.rating = rating;
+  }
+  enrich(database) {
+    return {
+      ...this,
+      publisher: database.publishers.find((item) => item.publisherId === this.publisher),
+      characters: this.characters.map((characterId) =>
+        database.characters.find((item) => item.characterId === characterId)
+      ),
+    };
   }
 }
 

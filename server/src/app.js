@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
 //
@@ -62,4 +63,21 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message });
 });
 
-app.listen(5000);
+async function start() {
+  try {
+    await mongoose.connect(
+      'mongodb://localhost:27017/comicsWebStore?compressors=zlib&gssapiServiceName=mongodb',
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+      }
+    );
+    app.listen(5000);
+  } catch (e) {
+    console.log('Server Error: ', e.message);
+    process.exit(1);
+  }
+}
+
+start();

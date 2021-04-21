@@ -1,55 +1,80 @@
-const { v4: uuidv4 } = require('uuid');
-const Character = require('../models/Character');
-const characters = require('../database/Database').getData.characters;
+const Character = require('../models/mongoose/Character');
 
-const character_get_all = (req, res) => {
-  res.json(characters);
-};
-
-const character_get_one = (req, res) => {
-  const index = characters.findIndex((item) => item.characterId === req.params.id);
-  if (index === -1) {
-    return res.status(404).json({ message: 'Character with such an id not found' });
+const character_get_all = async (req, res) => {
+  try {
+    const characters = await Character.find({});
+    res.json(characters);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-  res.json(characters[index]);
 };
 
-const character_post = (req, res) => {
-  const character = new Character({
-    characterId: uuidv4(),
-    nickname: req.body.nickname,
-    image: `http://localhost:5000/${req.file.path}`,
-    description: req.body.description,
-    superpowers: req.body.superpowers,
-    role: req.body.role,
-  });
-  characters.push(character);
-  res.status(201).json(character);
-};
+const character_get_one = async (req, res) => {
+  try {
+    const character = await Character.findById(req.params.id); // null
 
-const character_put = (req, res) => {
-  const index = characters.findIndex((item) => item.characterId === req.params.id);
-  if (index === -1) {
-    return res.status(404).json({ message: 'Character with such an id not found' });
+    if (!character) {
+      return res.status(404).json({ message: 'Character with such an id not found' });
+    }
+    res.json({ character });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-  characters[index] = new Character({
-    characterId: req.params.id,
-    nickname: req.body.nickname,
-    image: `http://localhost:5000/${req.file.path}`,
-    description: req.body.description,
-    superpowers: req.body.superpowers,
-    role: req.body.role,
-  });
-  res.json(characters[index]);
 };
 
-const character_delete = (req, res) => {
-  const index = characters.findIndex((item) => item.characterId === req.params.id);
-  if (index === -1) {
-    return res.status(404).json({ message: 'Character with such an id not found' });
+const character_post = async (req, res) => {
+  try {
+    const character = new Character({
+      nickname: req.body.nickname,
+      image: `http://localhost:5000/${req.file.path}`,
+      description: req.body.description,
+      superpowers: req.body.superpowers,
+      role: req.body.role,
+    });
+
+    await character.save();
+
+    res.status(201).json({ character });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-  characters.splice(index, 1);
-  res.json({ message: 'Character deleted' });
+};
+
+const character_put = async (req, res) => {
+  try {
+    const character = await Character.findByIdAndUpdate(
+      req.params.id,
+      {
+        nickname: req.body.nickname,
+        image: `http://localhost:5000/${req.file.path}`,
+        description: req.body.description,
+        superpowers: req.body.superpowers,
+        role: req.body.role,
+      },
+      { new: true }
+    );
+
+    if (!character) {
+      return res.status(404).json({ message: 'Character with such an id not found' });
+    }
+
+    res.json({ character });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const character_delete = async (req, res) => {
+  try {
+    const character = await Character.findByIdAndDelete(req.params.id);
+
+    if (!character) {
+      return res.status(404).json({ message: 'Character with such an id not found' });
+    }
+    res.json({ message: 'Character deleted' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 module.exports = {
